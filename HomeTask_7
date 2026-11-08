@@ -1,0 +1,26 @@
+import requests
+
+# URL публичного API
+url = "https://jsonplaceholder.typicode.com/posts"
+
+# Отправляем GET-запрос
+response = requests.get(url)
+
+# Проверяем, что запрос выполнен успешно
+response.raise_for_status()
+
+# Получаем данные в формате JSON
+posts = response.json()
+
+# Берем первые 5 постов
+first_five_posts = posts[:5]
+
+# Выводим заголовки и тела постов
+for index, post in enumerate(first_five_posts, start=1):
+    title = post["title"]
+    body = post["body"]
+
+    print(f"Пост {index}")
+    print(f"Заголовок: {title}")
+    print(f"Тело поста: {body}")
+    print("-" * 40)
